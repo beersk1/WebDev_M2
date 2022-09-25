@@ -1,0 +1,63 @@
+{% extends './common/base.html'%}{% load static %} {% block content %}
+<section class="py-5">
+  <div class="container py-5">
+    <h1 class="text-center mb-4">FILTERABLE CARDS</h1>
+    <a href="{% url 'taskform'%}">
+      <div>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          hrf="{% url 'taskform'%}"
+        >
+          Add new Task</button
+        ><br />
+        {% if messages %} {% for message in messages %}
+        <div style="margin-top: 10px" class="alert alert-primary" role="alert">
+          {{message.tags}} {{message}}
+        </div>
+        {% endfor %} {% endif %}
+      </div></a
+    >
+    <section class="py-5">
+      <div class="container">
+        <div class="row filtr-container">
+          {%for i in task %}
+          <div class="col-md-6 col-lg-4 filtr-item" data-category="2,3">
+            <div class="card border-dark">
+              <div class="card-header bg-dark text-light">
+                <h5 class="m-0">{{i.name}}</h5>
+              </div>
+              <div
+                class="card-body"
+                style="
+                  background: #363537;
+                  border-bottom-right-radius: 16px;
+                  border-bottom-left-radius: 16px;
+                "
+              >
+                <p class="card-text">{{i.category}}.</p>
+                <br />
+                <span>{{i.description}}</span>
+              </div>
+              <div class="d-flex card-footer">
+                <a href="{% url 'taskupdate' i.id%}">
+                  <button class="btn btn-dark btn-sm" type="button">
+                    <i class="fa fa-eye"></i>Update
+                  </button></a
+                >
+
+                <a href="{% url 'taskdelete' i.id%}">
+                  <button class="btn btn-dark btn-sm" type="button">
+                    <i class="fa fa-eye"></i>Delete
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+{% endblock %}

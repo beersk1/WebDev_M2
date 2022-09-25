@@ -1,0 +1,25 @@
+{% extends './common/base.html'%}{% load static %} {% load widget_tweaks %}
+<!-- kkk -->
+{% block content %}
+<main class="page projects-page">
+  <section style="text-align: center" class="midterm-block projects-cards">
+    <h2 style="text-align: center">Add New Project</h2>
+    <form action="{% url 'taskform'%}" method="post">
+      {% csrf_token %}
+
+      <label for="">Name: </label>
+      {% render_field form.name %}
+      <br />
+      <label for="">TechStack: </label>
+
+      {% render_field form.category %}
+      <br />
+      <label for="">Description: </label>
+
+      {% render_field form.description %}
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+</main>
+{% endblock %}
